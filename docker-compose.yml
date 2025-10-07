@@ -16,10 +16,13 @@ services:
   db:
     container_name: backend_db
     image: postgres:16
+    restart: always
     environment:
-      POSTGRES_DB: course_db
-      POSTGRES_USER: course_user
+      POSTGRES_USER: course_management
       POSTGRES_PASSWORD: course_pass
+      POSTGRES_DB: course_management_db
+    ports:
+      - "5432:5432" 
     volumes:
       - postgres_data:/var/lib/postgresql/data/
 
