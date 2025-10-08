@@ -9,3 +9,5 @@ python-decouple
 markdown       
 django-filter 
 drf-yasg[validation]
+drf-spectacular
+drf-spectacular-sidecar
