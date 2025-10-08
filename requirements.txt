@@ -5,3 +5,7 @@ django-cors-headers
 djangorestframework-simplejwt
 python-dotenv
 Pillow
+python-decouple
+markdown       
+django-filter 
+drf-yasg[validation]
