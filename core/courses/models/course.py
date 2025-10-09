@@ -7,11 +7,11 @@ from django.utils import timezone
 
 
 class Course(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey('accounts.User',on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     body = models.TextField(null=True)
     image = models.ImageField(upload_to='course/',null=True,blank=True)
-    category = models.ManyToManyField(Category)
+    category = models.ManyToManyField('Category')
     status = models.BooleanField(default=False)
     published_at = models.DateTimeField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
