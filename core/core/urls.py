@@ -32,7 +32,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/',include('rest_framework.urls')),
     path('account/',include('accounts.urls')),
-    path('courses/',include("courses.urls")),
+    path('',include("courses.urls")),
     
     # مسیر schema (فایل json از کل API)
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),

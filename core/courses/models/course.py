@@ -7,7 +7,7 @@ from django.utils import timezone
 
 
 class Course(models.Model):
-    user = models.ForeignKey('accounts.User',on_delete=models.CASCADE)
+    teacher = models.ForeignKey('accounts.User',on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     body = models.TextField(null=True)
     image = models.ImageField(upload_to='course/',null=True,blank=True)
