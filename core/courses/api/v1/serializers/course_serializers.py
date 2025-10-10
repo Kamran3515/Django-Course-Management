@@ -26,6 +26,6 @@ class CoursesSerializer(serializers.ModelSerializer):
         # اگر کاربر ادمین هست و user انتخاب شده بود، از خودش استفاده کن
         if request.user.role != 'admin':
             # برای معلم، user خودش باشه
-            validated_data['user'] = request.user
+            validated_data['teacher'] = request.user
 
         return super().create(validated_data)

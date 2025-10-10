@@ -9,7 +9,7 @@ class CoursesViewSetList(viewsets.ModelViewSet):
 
     queryset = Course.objects.all()  # Define the queryset
     serializer_class = CoursesSerializer  # Specify the serializer
-    permission_classes = [IsAuthenticated , IsTeacherOrAdmin, IsOwnerOrAdmin]
+    permission_classes = [IsAuthenticatedOrReadOnly , IsTeacherOrAdmin, IsOwnerOrAdmin]
 
 class CommentViewSetList(viewsets.ModelViewSet):
     queryset = Comment.objects.all()  # Define the queryset
@@ -29,4 +29,10 @@ class CategoryViewSetList(viewsets.ModelViewSet):
 
     queryset = Category.objects.all()  # Define the queryset
     serializer_class = CategorySerializer  # Specify the serializer
+    permissions_classes = [IsAuthenticatedOrReadOnly]
+
+class CategoryViewSetList(viewsets.ModelViewSet):
+
+    queryset = Rate.objects.all()  # Define the queryset
+    serializer_class = RateSerializer  # Specify the serializer
     permissions_classes = [IsAuthenticatedOrReadOnly]

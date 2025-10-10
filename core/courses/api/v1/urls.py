@@ -8,4 +8,5 @@ router.register('course', CoursesViewSetList, basename='course')
 router.register('comment', CommentViewSetList, basename='comment')
 router.register('enrollments', EnrollmentViewSet, basename='enrollment')
 router.register('category', CategoryViewSetList, basename='category')
+router.register('rate', RateViewSetList, basename='rate')
 urlpatterns = router.urls
