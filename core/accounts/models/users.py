@@ -1,6 +1,9 @@
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.contrib.auth.models import (
+    AbstractBaseUser,
+    PermissionsMixin,
+    BaseUserManager,
+)
 from django.db import models
-
 
 
 class UserManager(BaseUserManager):
@@ -39,14 +42,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         TEACHER = "teacher", "Teacher"
         STUDENT = "student", "Student"
 
-    email = models.EmailField(max_length=255,unique=True)
+    email = models.EmailField(max_length=255, unique=True)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     role = models.CharField(
-        max_length=20,
-        choices=Roles.choices,
-        default=Roles.STUDENT
+        max_length=20, choices=Roles.choices, default=Roles.STUDENT
     )
     created_at = models.DateTimeField(auto_now_add=True)
     uodated_at = models.DateTimeField(auto_now=True)

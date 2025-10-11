@@ -5,13 +5,14 @@ from .category import *
 from django.utils import timezone
 
 
-
 class Course(models.Model):
-    teacher = models.ForeignKey('accounts.User',on_delete=models.CASCADE, related_name='courses')
+    teacher = models.ForeignKey(
+        "accounts.User", on_delete=models.CASCADE, related_name="courses"
+    )
     title = models.CharField(max_length=255)
     body = models.TextField(null=True)
-    image = models.ImageField(upload_to='course/',null=True,blank=True)
-    category = models.ManyToManyField('Category')
+    image = models.ImageField(upload_to="course/", null=True, blank=True)
+    category = models.ManyToManyField("Category")
     status = models.BooleanField(default=False)
     published_at = models.DateTimeField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)

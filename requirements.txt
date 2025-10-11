@@ -11,3 +11,5 @@ django-filter
 drf-yasg[validation]
 drf-spectacular
 drf-spectacular-sidecar
+black
+flake8
