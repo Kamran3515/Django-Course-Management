@@ -12,7 +12,7 @@ class CoursesSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
 
         # اگر کاربر ادمین هست، اجازه بده user رو انتخاب کنه
-        if request:
+        if request.user and request.user.is_authenticated:
             if request.user.role == 'admin':
                 self.fields['teacher'].read_only = False
             else:

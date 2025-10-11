@@ -5,7 +5,7 @@ from django.utils import timezone
 from .course import *
 
 class Lesson(models.Model):
-    course = models.ForeignKey(Course,on_delete=models.CASCADE)
+    course = models.ForeignKey(Course,on_delete=models.CASCADE, related_name='lesson')
     title = models.CharField(max_length=255)
     body = models.TextField(null=True)
     image = models.ImageField(upload_to='course/lesson/',null=True,blank=True)

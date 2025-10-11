@@ -20,6 +20,6 @@ class IsOwnerOrAdmin(permissions.BasePermission):
         # فقط سازنده یا ادمین
         return obj.teacher == request.user or request.user.role == 'admin'
     
-class IsStudent(permissions.BasePermission):
+class IsStudentOrAdmin(permissions.BasePermission):
     def has_permission(self, request, view):
-        return request.user.is_authenticated and request.user.role == 'student'
+        return request.user.is_authenticated and request.user.role != 'teacher'

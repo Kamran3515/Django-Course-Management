@@ -3,8 +3,8 @@ from accounts.models import User
 from .course import Course
 
 class Comment(models.Model):
-    user = models.ForeignKey('accounts.User',on_delete=models.CASCADE)
-    course = models.ForeignKey('Course',on_delete=models.CASCADE)
+    user = models.ForeignKey('accounts.User',on_delete=models.CASCADE, related_name='comment')
+    course = models.ForeignKey('Course',on_delete=models.CASCADE, related_name='comment')
     comment = models.TextField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
