@@ -5,10 +5,10 @@ from .course import *
 
 
 class Rate(models.Model):
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="rate"
     )
-    course = models.OneToOneField(
+    course = models.ForeignKey(
         Course, on_delete=models.CASCADE, related_name="rate"
     )
     score = models.PositiveIntegerField(validators=[MaxValueValidator(10)])
@@ -17,3 +17,6 @@ class Rate(models.Model):
 
     def __str__(self):
         return f"{self.user.email} ({self.user.role})"
+
+    class Meta:
+        unique_together = ('user', 'course') 

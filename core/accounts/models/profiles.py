@@ -19,8 +19,9 @@ class Profile(models.Model):
     def __str__(self):
         return f"Profile of {self.user.email}"
 
-
-@receiver(post_save, sender=User)
+# if you are using faker, dont use signal but
+# if you want to give arbitrary data, use signal
+"""@receiver(post_save, sender=User)
 def save_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        Profile.objects.create(user=instance)"""

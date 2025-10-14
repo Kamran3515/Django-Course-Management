@@ -29,3 +29,12 @@ class TestAccountApi:
         }
         response = api_client.post(url,data,format="json")
         assert response.status_code == 201
+
+    def test_account_login_response_200(self,api_client,common_user):
+        url = reverse("accounts:api-v1:login")
+        data = {
+            "email":"test@gmail.com",
+            "password":"12345/@a",
+        }
+        response = api_client.post(url,data,format="json")
+        assert response.status_code == 200
