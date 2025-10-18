@@ -10,31 +10,31 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    env:
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      DB_NAME: ${{ secrets.DB_NAME }}
-      DB_USER: ${{ secrets.DB_USER }}
-      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      DB_HOST: 127.0.0.1
-      DB_PORT: 5432
-
     services:
-      db:
+      postgres:
         image: postgres:16
         env:
-          POSTGRES_DB: ${{ env.DB_NAME }}
-          POSTGRES_USER: ${{ env.DB_USER }}
-          POSTGRES_PASSWORD: ${{ env.DB_PASSWORD }}
+          POSTGRES_DB: test_db
+          POSTGRES_USER: test_user
+          POSTGRES_PASSWORD: test_pass
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U ${{ env.DB_USER }}"
+          --health-cmd "pg_isready -U test_user"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
 
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DB_NAME: test_db
+      DB_USER: test_user
+      DB_PASSWORD: test_pass
+      DB_HOST: localhost
+      DB_PORT: 5432
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -48,7 +48,7 @@ jobs:
           pip install -r requirements.txt
           pip install pytest pytest-xdist
 
-      - name: Create .env
+      - name: Create .env file
         run: |
           echo "SECRET_KEY=${{ env.SECRET_KEY }}" >> .env
           echo "DB_NAME=${{ env.DB_NAME }}" >> .env
