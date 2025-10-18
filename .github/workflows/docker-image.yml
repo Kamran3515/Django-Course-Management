@@ -25,6 +25,5 @@ jobs:
       run: docker compose up -d
 
     - name: Run tests
-      working-directory: ./django-course-management-backend
-      run: backen compose exec backend sh -c "pytest -n 1 . --maxfail=1"
+      run: docker compose exec backend sh -c "pytest -n 1 . --maxfail=1"
 
