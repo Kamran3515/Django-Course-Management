@@ -39,10 +39,8 @@ jobs:
 
     # 5️⃣ اجرای مهاجریشن‌ها
     - name: Run migrations
-      working-directory: ./django-course-management
       run: python manage.py migrate
 
     # 6️⃣ اجرای تمام تست‌ها
     - name: Run all tests
-      working-directory: ./django-course-management
       run: pytest -n 1 . --maxfail=1
