@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
 from .permissions import *
 from rest_framework.permissions import (
     IsAuthenticatedOrReadOnly,
@@ -10,13 +11,15 @@ from .serializers import *
 
 class CoursesViewSetList(viewsets.ModelViewSet):
 
-    queryset = Course.objects.all()  # Define the queryset
+    queryset = Course.objects.all().select_related('teacher', 'category')  # Define the queryset
     serializer_class = CoursesSerializer  # Specify the serializer
     permission_classes = [
         IsAuthenticatedOrReadOnly,
         IsTeacherOrAdmin,
         IsOwnerOrAdmin,
     ]
+    filter_backends = [DjangoFilterBackend]  # فعال کردن فیلتر برای این view
+    filterset_fields = ['category', 'teacher', 'published_at'] 
 
     def get_queryset(self):
         # همه‌ی دوره‌هایی که زمان انتشارشان رسیده

@@ -4,7 +4,7 @@ psycopg2-binary
 django-cors-headers
 djangorestframework-simplejwt
 python-dotenv
-Pillo
+Pillow
 pytest
 pytest-django
 python-decouple
